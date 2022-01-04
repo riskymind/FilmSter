@@ -1,13 +1,17 @@
 package com.asterisk.filmster
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.asterisk.filmster.model.Movie
+import com.asterisk.filmster.other.Constants.MOVIE_EXTRA
+import com.asterisk.filmster.ui.DetailActivity
 import com.bumptech.glide.Glide
 
 class MovieAdapter(private val context: Context, private val movies: List<Movie>) :
@@ -29,6 +33,16 @@ class MovieAdapter(private val context: Context, private val movies: List<Movie>
         private val ivPoster = itemView.findViewById<ImageView>(R.id.iv_poster)
         private val tvTitle = itemView.findViewById<TextView>(R.id.tv_title)
         private val tvOverView = itemView.findViewById<TextView>(R.id.tv_overview)
+
+        init {
+            itemView.setOnClickListener {
+                val movie = movies[adapterPosition]
+                val intent = Intent(context, DetailActivity::class.java)
+                intent.putExtra(MOVIE_EXTRA, movie)
+                context.startActivity(intent)
+            }
+        }
+
         fun bind(movie: Movie) {
             tvTitle.text = movie.title
             tvOverView.text = movie.overview
@@ -36,5 +50,10 @@ class MovieAdapter(private val context: Context, private val movies: List<Movie>
             Glide.with(context).load(movie.posterImageUrl).centerCrop()
                 .into(ivPoster)
         }
+
+//        override fun onClick(p0: View?) {
+//            val movie = movies[adapterPosition]
+//            Toast.makeText(context, movie.title, Toast.LENGTH_SHORT).show()
+//        }
     }
 }

@@ -1,4 +1,4 @@
-package com.asterisk.filmster
+package com.asterisk.filmster.ui
 
 import android.os.Bundle
 import android.util.Log
@@ -6,6 +6,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.asterisk.filmster.MovieAdapter
+import com.asterisk.filmster.R
 import com.asterisk.filmster.model.Movie
 import com.asterisk.filmster.other.Constants.NOW_PLAYING_URL
 import com.codepath.asynchttpclient.AsyncHttpClient
